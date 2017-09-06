@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <head>
-<title>Demo Room APU</title>	
+<title>Demo Room APU</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/JavaScript" src="js/mqttws31.js"></script> 
-<link href="css/style.css" rel="stylesheet"> 
-  
+<script type="text/JavaScript" src="js/mqttws31.js"></script>
+<link href="css/style.css" rel="stylesheet">
+
 <script type="text/JavaScript">
 
 var init = true;
@@ -55,7 +55,7 @@ function onConnectionLost(responseObject) {
 
 function onConnect() {
  console.log("CER: Connection OK");
- client.subscribe("world");
+ client.subscribe("world1");
  console.log("CER: Subscription OK");
 }
 
@@ -70,15 +70,20 @@ function onMessageArrived(message) {
 
     var msg = message.payloadString;
 
+    if (msg == "videos"){
+      speakMACVoice('Cual de los siguientes videos te gustaría ver?');
+    }else if (msg=="osde"){
+      speakMACVoice('Bienvenido '+msg+ ' a la  Demo Rum de Cognitiva');
+    }
     //document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + msg + '</p></div>';
     //centerDiv();
-    if (init){
-      speakMACVoice('Bienvenido al Demo Rum de Cognitiva APU');
-      init = false;
-    }
-    else{
-      speakMACVoice(msg);
-    }
+    //if (init){
+    //  speakMACVoice('Bienvenido al Demo Rum de Cognitiva APU');
+    //  init = false;
+    //}
+    //else{
+    //  speakMACVoice(msg);
+    //}
 
 
 /*
@@ -87,13 +92,13 @@ function onMessageArrived(message) {
       //document.getElementById("answerDiv").innerHTML = msg + '<br>&nbsp;';
       // Pinta distinto si origen es tabla
       if (msg.indexOf("%table%") === 0){
-      
+
       	msg = msg.split("%table%")[1];
       	count = msg.split("%")[0];
       	content = msg.split("%")[1];
-      
+
       	  document.getElementById("answerDiv").innerHTML = '<div class="content">' + content + '</div>';
-	
+
 	$(document).ready(function(){
 		var i = 0;
 		$('table tr').each(function() {
@@ -104,7 +109,7 @@ function onMessageArrived(message) {
 			i = i+1;
 		});
 	});
-	  
+
 	  if (count > 1) {
       	  	msg = "Se encontró " + count + "resultados";
       	  } else {
@@ -124,33 +129,34 @@ function onMessageArrived(message) {
 
       console.log(hotword_expressions.length);
       speakMACVoice(hotword_expressions[Math.floor(Math.random() * hotword_expressions.length)]);
-      
+
 
     } else if (message.destinationName == "THINKING_MESSAGE"){
 
       //console.log(hotword_expressions.length);
       speakMACVoice(thinking_expressions[Math.floor(Math.random() * thinking_expressions.length)]);
-      
+
 
     } else if (message.destinationName == "CER_CL_ANSWER_NO_AUDIO"){
 
       //document.getElementById("answerDiv").innerHTML = msg + '<br>&nbsp;';
       document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + msg + '</p></div>';
-      centerDiv(); 
+      centerDiv();
     } else if (message.destinationName == "PEOPLE_MATCHED"){
 
       speakMACVoice(people_matched_expressions[Math.floor(Math.random() * people_matched_expressions.length)]);
-      
+
     } else if (message.destinationName == "PEOPLE_NO_MATCHED"){
 
       speakMACVoice(no_matched_expressions[Math.floor(Math.random() * no_matched_expressions.length)]);
-      
+
     }
     */
 //
 }
 
 var endPoint_BE = "http://localhost:1880";
+
 function speakMACVoice(exp){
   var link = endPoint_BE + '/TTS?t=' + exp;
   var audioElement = document.createElement('audio');
@@ -174,16 +180,16 @@ function playIntroLoader(){
 }
 
 </script>
-</head> 
+</head>
 
 <body onload="startConnect()">
 	<div id="answerDiv">
 		<div class="content">
-			
 
-		</div>	  
+
+		</div>
 	</div>
-	
+
 	<video id="bgvid" playsinline autoplay muted loop>
 	  <source src="videos/saludo.mp4" type="video/mp4">
 	</video>

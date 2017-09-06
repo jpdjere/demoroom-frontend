@@ -82,6 +82,7 @@ function onMessageArrived(message) {
 
     if (message.destinationName == "world2")
     {
+
       //video = "<iframe width='840' height='560' src='http://www.youtube.com/embed/mBwmEGfMYBc?rel=0&showinfo=0&controls=1&autoplay=1&start=120' frameborder='0' allowfullscreen></iframe>";
       //var str = msg;
       //var res = str.toProperCase().replace(" ","_");
@@ -99,7 +100,6 @@ function onMessageArrived(message) {
             document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + content + '</p></div>';
       }else if (msg=="pararVideo"){
             $('#videoOn').stopVideo();
-      }
 			}else if (msg=="osde"){
             document.getElementById("answerDiv").innerHTML = '<div class="content"><p>Bienvenido OSDE</p></div>';
       }
