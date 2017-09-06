@@ -83,26 +83,23 @@ function onMessageArrived(message) {
     if (message.destinationName == "world2")
     {
 
-      //video = "<iframe width='840' height='560' src='http://www.youtube.com/embed/mBwmEGfMYBc?rel=0&showinfo=0&controls=1&autoplay=1&start=120' frameborder='0' allowfullscreen></iframe>";
-      //var str = msg;
-      //var res = str.toProperCase().replace(" ","_");
 
-      //content = "<iframe width='1400' height='900' src='https://es.wikipedia.org/wiki/"+res+"' frameborder='1' allowfullscreen></iframe>";
-      //document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + content + '</p></div>';
       if (msg == "video1"){
-          content = "<iframe width='800' height='600' src='http://www.youtube.com/embed/mBwmEGfMYBc?rel=0&showinfo=0&controls=1&autoplay=1&start=120' frameborder='0' allowfullscreen>";
+          content = "<iframe width='97%' height='auto' src='http://www.youtube.com/embed/mBwmEGfMYBc?rel=0&showinfo=0&controls=1&autoplay=1&start=120' frameborder='0' allowfullscreen>";
             document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + content + '</p></div>';
-
-      //content = "<iframe width='1400' height='900' src='https://es.wikipedia.org/wiki/"+res+"' frameborder='1' allowfullscreen></iframe>";
-      //document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + content + '</p></div>';
       }else if (msg=="video2"){
-            content = "<iframe id='videoOn' width='800' height='600' src='https://www.youtube.com/embed/_Xcmh1LQB9I?rel=0&showinfo=0&controls=1&autoplay=1&start=120' frameborder='0' allowfullscreen></iframe>";
+            content = "<iframe id='videoOn' width='97%' height='auto' src='https://www.youtube.com/embed/_Xcmh1LQB9I?rel=0&showinfo=0&controls=1&autoplay=1&start=120' frameborder='0' allowfullscreen></iframe>";
             document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + content + '</p></div>';
       }else if (msg=="pararVideo"){
             $('#videoOn').stopVideo();
 			}else if (msg=="osde"){
             document.getElementById("answerDiv").innerHTML = '<div class="content"><p>Bienvenido OSDE</p></div>';
-      }
+      }else if (msg==='demos'){
+				content = "<iframe id='videoOn' width='97%' height='auto' src='https://summarizer-dev.mybluemix.net/' frameborder='0' allowfullscreen></iframe>";
+				document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + content + '</p></div>';
+			}
+
+
 
     }
     else{
@@ -110,74 +107,6 @@ function onMessageArrived(message) {
     }
     centerDiv();
   }
-
-/*
-    if (message.destinationName == "world"){
-
-      //document.getElementById("answerDiv").innerHTML = msg + '<br>&nbsp;';
-      // Pinta distinto si origen es tabla
-      if (msg.indexOf("%table%") === 0){
-
-      	msg = msg.split("%table%")[1];
-      	count = msg.split("%")[0];
-      	content = msg.split("%")[1];
-
-      	  document.getElementById("answerDiv").innerHTML = '<div class="content">' + content + '</div>';
-
-	$(document).ready(function(){
-		var i = 0;
-		$('table tr').each(function() {
-			var $this = $(this);
-			setTimeout( function(){
-				$this.css('opacity', 1);
-			},750 * i);
-			i = i+1;
-		});
-	});
-
-	  if (count > 1) {
-      	  	msg = "Se encontró " + count + "resultados";
-      	  } else {
-      	  	msg = "Se encontró un resultado";
-      	  }
-      } else {
-          document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + msg + '</p></div>';
-      }
-      centerDiv();
-      msg = msg.replace(/<br \/>/gi,'. ');
-      msg = msg.replace(/:/gi,' ');
-      msg = msg.replace(/\$ ([0-9]+)/gi, '$1 pesos.');
-      speakMACVoice(msg);
-
-    } else if (message.destinationName == "189924305811075"){
-    //} else if (message.destinationName == "66064160139488"){
-
-      console.log(hotword_expressions.length);
-      speakMACVoice(hotword_expressions[Math.floor(Math.random() * hotword_expressions.length)]);
-
-
-    } else if (message.destinationName == "THINKING_MESSAGE"){
-
-      //console.log(hotword_expressions.length);
-      speakMACVoice(thinking_expressions[Math.floor(Math.random() * thinking_expressions.length)]);
-
-
-    } else if (message.destinationName == "CER_CL_ANSWER_NO_AUDIO"){
-
-      //document.getElementById("answerDiv").innerHTML = msg + '<br>&nbsp;';
-      document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + msg + '</p></div>';
-      centerDiv();
-    } else if (message.destinationName == "PEOPLE_MATCHED"){
-
-      speakMACVoice(people_matched_expressions[Math.floor(Math.random() * people_matched_expressions.length)]);
-
-    } else if (message.destinationName == "PEOPLE_NO_MATCHED"){
-
-      speakMACVoice(no_matched_expressions[Math.floor(Math.random() * no_matched_expressions.length)]);
-
-    }
-    */
-//
 
 
 </script>

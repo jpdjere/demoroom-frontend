@@ -92,14 +92,10 @@ function onMessageArrived(message) {
 		}else if(msg == "osde"){
 			content = `<iframe width="640" height="360" src="https://www.youtube.com/embed/6_6YDc4eD5c?rel=0&amp;controls=0" frameborder="0" allowfullscreen></iframe>`;
 			document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + content + '</p></div>';
+		}else if (msg==='demos'){
+			content = "<iframe id='videoOn' width='97%' height='auto' src='http://ec2-34-248-28-88.eu-west-1.compute.amazonaws.com:8088/' frameborder='0' allowfullscreen></iframe>";
+			document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + content + '</p></div>';
 		}
-      //video = "<iframe width='840' height='560' src='http://www.youtube.com/embed/mBwmEGfMYBc?rel=0&showinfo=0&controls=1&autoplay=1&start=120' frameborder='0' allowfullscreen></iframe>";
-      //var str = msg;
-      //var res = str.toProperCase().replace(" ","_");
-
-      //content = "<iframe width='1400' height='900' src='https://es.wikipedia.org/wiki/"+res+"' frameborder='1' allowfullscreen></iframe>";
-      //document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + content + '</p></div>';
-    }
     else{
       document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + msg + '</p></div>';
     }
