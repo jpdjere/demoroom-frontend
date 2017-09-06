@@ -1,0 +1,419 @@
+body {
+  margin: 0;
+  background: #000;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.texture,
+.animated-gradient,
+video,
+.video-thumb {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.5;
+}
+
+
+video {
+	object-fit: fill; /* Ajusta video al ancho y alto de pantalla */
+}
+
+.texture {
+	opacity: 1;
+	background-image: url("../images/texture.png");
+	background-size: 60px 60px;
+}
+
+.video-thumb {
+	background-image: url("../images/video.jpg");
+	background-size: cover;
+	z-index: -1;
+	opacity: 0.4;
+}
+
+.logo {
+	z-index: 1;
+	height: 20%;
+	width: auto;
+	position: absolute;
+	right: 3%;
+	bottom: 0;	
+}
+
+a {
+	border: 1px solid white;
+	color: white;
+	padding: 10px 15px;
+	border-radius: 4px;
+	text-decoration: none;
+}
+
+a:hover,
+a.current {
+	background-color: white;
+	color: black;	
+}
+
+table tr {
+	opacity: 0;
+	transition-duration: 1s;
+}
+
+/*------- Index Answer -------*/
+#answerDiv,
+#mainChart,
+#real-state {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	display: flex;
+}
+
+	#answerDiv .content {
+		margin: auto;
+		width: 90%;
+		text-align: center;
+	}
+	
+		#answerDiv h1,
+		#answerDiv h2,
+		h3 {
+			color: #06bfc1;
+			font-weight: 300;
+		}
+		
+		#answerDiv h1 {
+			font-size: 70px;
+			margin: 0 0 30px;
+		}
+
+		#answerDiv h2 {
+			font-size: 35px;
+			margin: 0 0 30px;
+		}
+		
+		#answerDiv span,
+		#answerDiv p {
+			color: #ffffff;
+		}
+		
+		#answerDiv span {
+			font-size: 30px;
+			font-weight: 400;
+		}
+		
+		#answerDiv .box{
+			background-color: rgba(255,255,255,0.3);
+			border:1px solid rgba(255,255,255,0.2);
+			border-radius: 3px;
+			margin: 0 auto;
+			padding:25px;
+			width: 80%;
+		}
+		
+		#answerDiv p {
+			font-size: 42px;
+			font-weight: 100;
+		}
+		
+		#answerDiv .box p{
+			font-size:30px;
+		}
+
+table {
+	width: 100%;
+	border: 1px solid #5fa0fa;
+	border-radius: 5px !important;	
+	color: #ffffff;
+	margin: 0;
+	border-spacing: 0;
+}
+
+	table tr th {
+		background-color: rgba(95,160,250,0.3);
+		padding: 15px 0;	
+	}
+	
+	table tr td {
+		border-top: 1px solid rgba(95,160,250,0.3);
+		padding: 15px 0;
+		font-weight: 100;
+	}
+	
+	table tr:nth-child(odd) {
+		background: rgba(255,255,255,0.1);
+	}
+/*------- Graph -------*/
+#mainChart svg {
+	float: left;
+}		
+
+	#mainChart .data-container {
+		background-color: rgba(255,255,255,0.15);
+		width: 20%;
+		padding: 2%;
+		position: absolute;
+		top: 5%;
+		right: 2%;
+		border-radius: 5px;
+		color: #fff;
+	}
+	
+		#mainChart .data-container .data {
+			float: right;
+			width: 100%;
+			margin-bottom: 10px;
+		}
+		
+			#mainChart .data-container .data span {
+				font-weight: 100;
+				font-size: 70px;
+				float: left;
+				width: 100%;
+				margin-bottom: -10px;
+			}
+			
+			#mainChart .data-container .data p {
+				font-size: 15px;
+				text-transform: uppercase;
+				font-weight: 400;
+			}
+
+h3 {
+	font-size: 20px;
+	position: absolute;
+	left: 2%;
+	top: 2%;
+	margin: 0;
+	z-index: 1;
+}
+
+/*------- Image -------*/
+#imageDiv {
+	position: absolute;
+	width: 50%;
+	height: 80%;
+	margin: 5.5% 25%;
+	z-index: 1;
+	color: #fff;
+	text-align: center;
+}
+
+	#imageDiv .image-container {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		border-radius: 5px;
+		box-shadow: 0 0 8px 10px rgba(0,0,0,0.3);
+		overflow: hidden;
+		color: #fff;
+	}
+	
+		#imageDiv .photo {
+			width: 100%;
+			height: 100%;
+			background-size: cover;
+		}
+		
+		.zoom {
+		 	animation: zoom 60s forwards;
+		}
+		
+		@-webkit-keyframes zoom {
+		    from {
+		    	-webkit-transform: scale(1);
+		    }
+		    to {
+		    	-webkit-transform: scale(1.35);
+		    }
+		}
+		
+		@keyframes zoom {
+		   from {
+		        transform: scale(1);
+		   }
+		   to {
+		        transform: scale(1.35);
+		   }
+		}
+	
+		#imageDiv span {
+			width: 100%;
+			float: left;
+			text-align: right;
+			position: relative;
+		}
+		
+		#imageDiv span.big {
+			font-weight: 700;
+			font-size: 15px;
+			margin-top: 10px;
+		}
+		
+		#imageDiv span.small {
+			font-weight: 300;
+			font-size: 13px;
+		}
+
+/*------- Emociones -------*/
+#imageDiv img {
+	width: 130%;
+	height: auto;
+	margin-left: -15%;	
+}	
+	
+/*------- Íconos -------*/
+#svg-animation {
+	fill:none;
+	stroke:#FFFFFF;
+	stroke-width:3;
+	stroke-linecap:round;
+	stroke-linejoin:round;
+	stroke-miterlimit:10;
+	height: 90%;
+}		
+
+#imageDiv h1 {
+	position: relative;
+	width: 100%;
+	bottom: 0;
+	margin: 0;
+	width: 100%;
+	text-align: center;
+	font-size: 35px;
+	font-weight: 100;
+	text-transform: uppercase;
+}
+
+/*------- Inmobiliaria -------*/
+#real-state {
+	display: block;	
+}
+
+	#real-state .circles-main-container {
+		width: 80%;
+		margin: 3% auto 0;
+	}
+
+	#real-state .bar-chart-container {
+		margin: 0 auto;
+		width: 70%;
+	}
+	
+		#real-state .circles-main-container #container-pie {
+			width: 50%;
+			float: right !important;
+			margin: -40px 0 0 !important;
+		}
+		
+		#real-state .circles-main-container #container-circle,
+		#real-state .circles-main-container #container-circle-2 {
+			width: 20%;
+		}
+	
+		#real-state .circles-main-container #container-pie,
+		#real-state .circles-main-container #container-circle,
+		#real-state .circles-main-container #container-circle-2 {
+			float: left;
+			position: relative;
+			margin: 3.5% 2% 0;
+		}	
+			
+/*------- ANIMATE -------*/			
+.animated {
+  animation-duration: 5s;
+  animation-fill-mode: both;
+}
+
+.animated.infinite {
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+  from {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.pulse {
+  animation-name: pulse;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInLeft {
+  animation-name: fadeInLeft;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+
+.animated-gradient {
+	background: linear-gradient(228deg, #0e131b, #29557a);
+	background-size: 400% 400%;
+	-webkit-animation: animated-gradient 30s ease infinite;
+	-moz-animation: animated-gradient 30s ease infinite;
+	-o-animation: animated-gradient 30s ease infinite;
+	animation: animated-gradient 30s ease infinite;
+}
+
+@-webkit-keyframes animated-gradient {
+    0%{background-position:97% 0%}
+    50%{background-position:4% 100%}
+    100%{background-position:97% 0%}
+}
+@-moz-keyframes animated-gradient {
+    0%{background-position:97% 0%}
+    50%{background-position:4% 100%}
+    100%{background-position:97% 0%}
+}
+@-o-keyframes animated-gradient {
+    0%{background-position:97% 0%}
+    50%{background-position:4% 100%}
+    100%{background-position:97% 0%}
+}
+@keyframes animated-gradient {
+    0%{background-position:97% 0%}
+    50%{background-position:4% 100%}
+    100%{background-position:97% 0%}
+}

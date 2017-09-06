@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<head>
+<title>Demo Room APU</title>	
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/JavaScript" src="js/mqttws31.js"></script> 
+<link href="css/style.css" rel="stylesheet"> 
+  
+<script type="text/JavaScript">
+
+var init = true;
+
+function centerDiv(){
+     var width = window.innerWidth
+  || document.documentElement.clientWidth
+  || document.body.clientWidth;
+
+  var height = window.innerHeight
+  || document.documentElement.clientHeight
+  || document.body.clientHeight;
+
+  var diff_H = height - document.getElementById("answerDiv").height;
+  var offset_H = Math.floor(diff_H / 2);
+  var diff_W = width - document.getElementById("answerDiv").width;
+  var offset_W = Math.floor(diff_W / 2);
+
+  document.getElementById("answerDiv").style.top = offset_H + "px";
+  document.getElementById("answerDiv").style.left = offset_W + "px";
+}
+
+function startConnect(){
+  var d = new Date();
+  var ms = d.getTime();
+	doConnect('localhost', 8083, ms + "");
+}
+
+var client;
+
+function doConnect(host, port, clientId) {
+
+    client = new Messaging.Client(host, port, clientId);
+    console.log("CER: Client Instantiated.");
+    client.startTrace();
+    console.log("CER: Trying to connect...");
+    client.connect({onSuccess:onConnect,userName:'admin',password:'public'});
+    client.onMessageArrived = onMessageArrived;
+    client.onConnectionLost = onConnectionLost;
+}
+
+function onConnectionLost(responseObject) {
+  console.log("BCS: Disconnected");
+  client.connect({onSuccess:onConnect,userName:'admin',password:'public'});
+}
+
+function onConnect() {
+ console.log("CER: Connection OK");
+ client.subscribe("world");
+ console.log("CER: Subscription OK");
+}
+
+var hotword_expressions = ["Te escucho","Cuéntame","Dime por favor","Te estoy escuchando","Cuéntame por favor"];
+var thinking_expressions = ["Analizando","Pensando un poco","OK, lo analizo","Pensando"];
+var people_matched_expressions = ["Acá tienes los estudiantes que calzan con el perfil","Estos son los estudiantes con esas características","Acá están los estudiantes que calzan con ese perfil","Estos son los estudiantes que calzan con ese patrón"];
+var no_matched_expressions = ["Me temo que no encontré estudiantes con ese perfil","No encontré estudiantes con ese perfil","Lamentablemente no encontré estudiantes con ese patrón"];
+
+function onMessageArrived(message) {
+    console.log(message.destinationName);
+    console.log(message.payloadString);
+
+    var msg = message.payloadString;
+
+    //document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + msg + '</p></div>';
+    //centerDiv();
+    if (init){
+      speakMACVoice('Bienvenido al Demo Rum de Cognitiva APU');
+      init = false;
+    }
+    else{
+      speakMACVoice(msg);
+    }
+
+
+/*
+    if (message.destinationName == "world"){
+
+      //document.getElementById("answerDiv").innerHTML = msg + '<br>&nbsp;';
+      // Pinta distinto si origen es tabla
+      if (msg.indexOf("%table%") === 0){
+      
+      	msg = msg.split("%table%")[1];
+      	count = msg.split("%")[0];
+      	content = msg.split("%")[1];
+      
+      	  document.getElementById("answerDiv").innerHTML = '<div class="content">' + content + '</div>';
+	
+	$(document).ready(function(){
+		var i = 0;
+		$('table tr').each(function() {
+			var $this = $(this);
+			setTimeout( function(){
+				$this.css('opacity', 1);
+			},750 * i);
+			i = i+1;
+		});
+	});
+	  
+	  if (count > 1) {
+      	  	msg = "Se encontró " + count + "resultados";
+      	  } else {
+      	  	msg = "Se encontró un resultado";
+      	  }
+      } else {
+          document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + msg + '</p></div>';
+      }
+      centerDiv();
+      msg = msg.replace(/<br \/>/gi,'. ');
+      msg = msg.replace(/:/gi,' ');
+      msg = msg.replace(/\$ ([0-9]+)/gi, '$1 pesos.');
+      speakMACVoice(msg);
+
+    } else if (message.destinationName == "189924305811075"){
+    //} else if (message.destinationName == "66064160139488"){
+
+      console.log(hotword_expressions.length);
+      speakMACVoice(hotword_expressions[Math.floor(Math.random() * hotword_expressions.length)]);
+      
+
+    } else if (message.destinationName == "THINKING_MESSAGE"){
+
+      //console.log(hotword_expressions.length);
+      speakMACVoice(thinking_expressions[Math.floor(Math.random() * thinking_expressions.length)]);
+      
+
+    } else if (message.destinationName == "CER_CL_ANSWER_NO_AUDIO"){
+
+      //document.getElementById("answerDiv").innerHTML = msg + '<br>&nbsp;';
+      document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + msg + '</p></div>';
+      centerDiv(); 
+    } else if (message.destinationName == "PEOPLE_MATCHED"){
+
+      speakMACVoice(people_matched_expressions[Math.floor(Math.random() * people_matched_expressions.length)]);
+      
+    } else if (message.destinationName == "PEOPLE_NO_MATCHED"){
+
+      speakMACVoice(no_matched_expressions[Math.floor(Math.random() * no_matched_expressions.length)]);
+      
+    }
+    */
+//
+}
+
+var endPoint_BE = "http://localhost:1880";
+function speakMACVoice(exp){
+  var link = endPoint_BE + '/TTS?t=' + exp;
+  var audioElement = document.createElement('audio');
+  audioElement.setAttribute('src', link);
+  audioElement.addEventListener('ended', function() {
+      console.log('ended');
+  }, false);
+  audioElement.play();
+}
+
+function playIntroLoader(){
+  var audioElement = document.createElement('audio');
+  audioElement.setAttribute('src', 'audios/introLoader.m4a');
+  audioElement.setAttribute('loop', 'true');
+  audioElement.setAttribute('volume', 0.1);
+  audioElement.setAttribute('controls', 'true');
+  audioElement.addEventListener('ended', function() {
+      console.log('ended');
+  }, false);
+  audioElement.play();
+}
+
+</script>
+</head> 
+
+<body onload="startConnect()">
+	<div id="answerDiv">
+		<div class="content">
+			
+
+		</div>	  
+	</div>
+	
+	<video id="bgvid" playsinline autoplay muted loop>
+	  <source src="videos/saludo.mp4" type="video/mp4">
+	</video>
+</body>
+
+</html>
