@@ -95,7 +95,7 @@ function onMessageArrived(message) {
 			}else if (msg=="osde"){
             document.getElementById("answerDiv").innerHTML = '<div class="content"><p>Bienvenido OSDE</p></div>';
       }else if (msg==='demos'){
-				content = "<iframe id='videoOn' width='97%' height='auto' src='https://summarizer-dev.mybluemix.net/' frameborder='0' allowfullscreen></iframe>";
+				content = "<iframe id='videoOn' width='100%' height='100%' src='https://summarizer-dev.mybluemix.net/' frameborder='0' allowfullscreen></iframe>";
 				document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + content + '</p></div>';
 			}
 
@@ -113,7 +113,7 @@ function onMessageArrived(message) {
 </head>
 
 <body onload="startConnect();">
-	<div id="answerDiv">
+	<div id="answerDiv" style="width:100%;height:100%">
 		<div class="content">
 			<h2>Cognitive Experience Room</h2>
 		</div>
