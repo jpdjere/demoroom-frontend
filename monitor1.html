@@ -78,84 +78,7 @@ function onMessageArrived(message) {
     }else if (msg=="demos"){
       speakMACVoice('Estas son las demos más importantes de Cognitiva');
     }
-    //document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + msg + '</p></div>';
-    //centerDiv();
-    //if (init){
-    //  speakMACVoice('Bienvenido al Demo Rum de Cognitiva APU');
-    //  init = false;
-    //}
-    //else{
-    //  speakMACVoice(msg);
-    //}
 
-
-/*
-    if (message.destinationName == "world"){
-
-      //document.getElementById("answerDiv").innerHTML = msg + '<br>&nbsp;';
-      // Pinta distinto si origen es tabla
-      if (msg.indexOf("%table%") === 0){
-
-      	msg = msg.split("%table%")[1];
-      	count = msg.split("%")[0];
-      	content = msg.split("%")[1];
-
-      	  document.getElementById("answerDiv").innerHTML = '<div class="content">' + content + '</div>';
-
-	$(document).ready(function(){
-		var i = 0;
-		$('table tr').each(function() {
-			var $this = $(this);
-			setTimeout( function(){
-				$this.css('opacity', 1);
-			},750 * i);
-			i = i+1;
-		});
-	});
-
-	  if (count > 1) {
-      	  	msg = "Se encontró " + count + "resultados";
-      	  } else {
-      	  	msg = "Se encontró un resultado";
-      	  }
-      } else {
-          document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + msg + '</p></div>';
-      }
-      centerDiv();
-      msg = msg.replace(/<br \/>/gi,'. ');
-      msg = msg.replace(/:/gi,' ');
-      msg = msg.replace(/\$ ([0-9]+)/gi, '$1 pesos.');
-      speakMACVoice(msg);
-
-    } else if (message.destinationName == "189924305811075"){
-    //} else if (message.destinationName == "66064160139488"){
-
-      console.log(hotword_expressions.length);
-      speakMACVoice(hotword_expressions[Math.floor(Math.random() * hotword_expressions.length)]);
-
-
-    } else if (message.destinationName == "THINKING_MESSAGE"){
-
-      //console.log(hotword_expressions.length);
-      speakMACVoice(thinking_expressions[Math.floor(Math.random() * thinking_expressions.length)]);
-
-
-    } else if (message.destinationName == "CER_CL_ANSWER_NO_AUDIO"){
-
-      //document.getElementById("answerDiv").innerHTML = msg + '<br>&nbsp;';
-      document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + msg + '</p></div>';
-      centerDiv();
-    } else if (message.destinationName == "PEOPLE_MATCHED"){
-
-      speakMACVoice(people_matched_expressions[Math.floor(Math.random() * people_matched_expressions.length)]);
-
-    } else if (message.destinationName == "PEOPLE_NO_MATCHED"){
-
-      speakMACVoice(no_matched_expressions[Math.floor(Math.random() * no_matched_expressions.length)]);
-
-    }
-    */
-//
 }
 
 var endPoint_BE = "http://localhost:1880";
@@ -193,9 +116,8 @@ function playIntroLoader(){
 		</div>
 	</div>
 
-	<video id="bgvid" playsinline autoplay muted loop>
-	  <source src="videos/saludo.mp4" type="video/mp4">
-	</video>
+	<img id="bgvid" src="watson.gif" style="width:100%">
+	</img>
 </body>
 
 </html>
