@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <head>
-	
-<title>Demo Room APU</title>  
+
+<title>Demo Room APU</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/JavaScript" src="js/mqttws31.js"></script> 
-<link href="css/style.css" rel="stylesheet"> 
- 
+<script type="text/JavaScript" src="js/mqttws31.js"></script>
+<link href="css/style.css" rel="stylesheet">
+
 <script type="text/JavaScript">
 
 function centerDiv(){
@@ -95,8 +95,10 @@ function onMessageArrived(message) {
       //content = "<iframe width='1400' height='900' src='https://es.wikipedia.org/wiki/"+res+"' frameborder='1' allowfullscreen></iframe>";
       //document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + content + '</p></div>';
       }else if (msg=="video2"){
-            content = "<iframe width='800' height='600' src='https://www.youtube.com/embed/_Xcmh1LQB9I?rel=0&showinfo=0&controls=1&autoplay=1&start=120' frameborder='0' allowfullscreen></iframe>";
+            content = "<iframe id='videoOn' width='800' height='600' src='https://www.youtube.com/embed/_Xcmh1LQB9I?rel=0&showinfo=0&controls=1&autoplay=1&start=120' frameborder='0' allowfullscreen></iframe>";
             document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + content + '</p></div>';
+      }else if (msg=="pararVideo"){
+            $('#videoOn').stopVideo();
       }
     }
     else{
@@ -111,13 +113,13 @@ function onMessageArrived(message) {
       //document.getElementById("answerDiv").innerHTML = msg + '<br>&nbsp;';
       // Pinta distinto si origen es tabla
       if (msg.indexOf("%table%") === 0){
-      
+
       	msg = msg.split("%table%")[1];
       	count = msg.split("%")[0];
       	content = msg.split("%")[1];
-      
+
       	  document.getElementById("answerDiv").innerHTML = '<div class="content">' + content + '</div>';
-	
+
 	$(document).ready(function(){
 		var i = 0;
 		$('table tr').each(function() {
@@ -128,7 +130,7 @@ function onMessageArrived(message) {
 			i = i+1;
 		});
 	});
-	  
+
 	  if (count > 1) {
       	  	msg = "Se encontró " + count + "resultados";
       	  } else {
@@ -148,42 +150,42 @@ function onMessageArrived(message) {
 
       console.log(hotword_expressions.length);
       speakMACVoice(hotword_expressions[Math.floor(Math.random() * hotword_expressions.length)]);
-      
+
 
     } else if (message.destinationName == "THINKING_MESSAGE"){
 
       //console.log(hotword_expressions.length);
       speakMACVoice(thinking_expressions[Math.floor(Math.random() * thinking_expressions.length)]);
-      
+
 
     } else if (message.destinationName == "CER_CL_ANSWER_NO_AUDIO"){
 
       //document.getElementById("answerDiv").innerHTML = msg + '<br>&nbsp;';
       document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + msg + '</p></div>';
-      centerDiv(); 
+      centerDiv();
     } else if (message.destinationName == "PEOPLE_MATCHED"){
 
       speakMACVoice(people_matched_expressions[Math.floor(Math.random() * people_matched_expressions.length)]);
-      
+
     } else if (message.destinationName == "PEOPLE_NO_MATCHED"){
 
       speakMACVoice(no_matched_expressions[Math.floor(Math.random() * no_matched_expressions.length)]);
-      
+
     }
     */
 //
 
 
 </script>
-</head> 
+</head>
 
 <body onload="startConnect();">
 	<div id="answerDiv">
 		<div class="content">
 			<h2>Cognitive Experience Room</h2>
-		</div>	  
+		</div>
 	</div>
-	
+
 	<video id="bgvid" playsinline autoplay muted loop>
 	  <source src="videos/video.mp4" type="video/mp4">
 	</video>
