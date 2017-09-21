@@ -8,6 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/JavaScript" src="js/mqttws31.js"></script>
 <link href="css/style.css" rel="stylesheet">
+<link href="demo.css" rel="stylesheet">
 
 <script type="text/JavaScript">
 
@@ -83,8 +84,23 @@ function onMessageArrived(message) {
     if (message.destinationName == "world3"){
 
 		    if (msg == "videos"){
-		          content = `<iframe width='640' height='360' src='http://www.youtube.com/embed/mBwmEGfMYBc?rel=0&showinfo=0&controls=1&autoplay=0&start=120' frameborder='0' allowfullscreen></iframe><br />
-							<iframe width='640' height='360' src='https://www.youtube.com/embed/_Xcmh1LQB9I' frameborder='0' allowfullscreen></iframe>`;
+		          content = `
+              <div class="row">
+                <div class="col-1">
+                  <iframe width='640' height='360' src='http://www.youtube.com/embed/mBwmEGfMYBc' frameborder='0' allowfullscreen></iframe>
+                </div>
+                <div class="col-1">
+                <iframe width='640' height='360' src='https://www.youtube.com/embed/_Xcmh1LQB9I' frameborder='0' allowfullscreen></iframe>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <iframe width='640' height='360' src='https://www.youtube.com/watch?v=RyqBgXdK-zg' frameborder='0' allowfullscreen></iframe>
+                </div>
+                <div class="col-1">
+                  <iframe width='640' height='360' src='https://www.youtube.com/watch?v=Pw-cwjQFHWY' frameborder='0' allowfullscreen></iframe>
+                </div>
+              </div>`;
 		            document.getElementById("answerDiv").innerHTML = '<div class="content"><p>' + content + '</p></div>';
 
 		      //content = "<iframe width='1400' height='900' src='https://es.wikipedia.org/wiki/"+res+"' frameborder='1' allowfullscreen></iframe>";

@@ -1,0 +1,31 @@
+
+body {
+    background-color: #fff;
+    color: #243238;
+    font-family: "PT Sans",sans-serif;
+    font-size: 13px;
+    line-height: 16px;
+    margin: 0;
+    min-width: 320px;
+    overflow: hidden;
+    width: 100%;
+}
+
+
+.col-1 {
+    margin: 2%;
+    width: 45%;
+
+}
+
+.row {
+    width:100%;
+    margin-left: -15px;
+    margin-right: -15px;
+    display: inline-flex;
+}
+
+iframe, #iframelive {
+    width: 100%;
+    background-color: #fff;
+}
