@@ -119,6 +119,8 @@ function onMessageArrived(message) {
           document.getElementById("answerDiv").innerHTML = '<div class="content" style="width:100%;height:100%">' + content + '</div>';
         }
         else if ((clientes.indexOf(msg)>0)){
+          console.log("Entre un chat");
+          alert("Entre un chat");
           content = "<iframe width='100%' height='100%' src='https://cobrador-telecom.mybluemix.net/chat/"+msg+"'></iframe>";
           document.getElementById("answerDiv").innerHTML = '<div class="content" style="width:100%;height:100%">' + content + '</div>';
         }
