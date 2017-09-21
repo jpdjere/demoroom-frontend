@@ -115,15 +115,8 @@ function onMessageArrived(message) {
 					document.getElementById("answerDiv").innerHTML = '<div class="content" style="width:100%;height:100%">' + content + '</div>';
 				}
         else if (msg==='cobrador'){
-          content = `
-          <!--Table and divs that hold the pie charts-->
-              <table class="columns">
-                <tr>
-                  <td><div id="piechart_div" style="border: 1px solid #ccc"></div></td>
-                  <td><div id="barchart_div" style="border: 1px solid #ccc"></div></td>
-                </tr>
-              </table>`;
-          document.getElementById("answerDiv").innerHTML = '<div class="content" style="width:100%;height:100%">' + content + '</div>';
+
+          //document.getElementById("answerDiv").innerHTML = '<div class="content" style="width:100%;height:100%">' + content + '</div>';
 
 
           // Load Charts and the corechart and barchart packages.
@@ -179,6 +172,14 @@ function onMessageArrived(message) {
 			<h2>Cognitive Experience Room</h2>
 		</div>
 	</div>
+
+  <!--Table and divs that hold the pie charts-->
+  <table class="columns">
+        <tr>
+          <td><div id="piechart_div" style="border: 1px solid #ccc"></div></td>
+          <td><div id="barchart_div" style="border: 1px solid #ccc"></div></td>
+       </tr>
+  </table>
 
 	<video id="bgvid" playsinline autoplay muted loop>
 	  <source src="videos/video.mp4" type="video/mp4">
