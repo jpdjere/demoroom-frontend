@@ -1,0 +1,23 @@
+tell application "Terminal"
+	activate
+	do script
+	do script "cd Documents/Flujo/Hotword" in tab 1 of front window
+	do script "cd python watson_hotword2.py models/OK_Watson2.pmdl" in tab 1 of front window
+	delay 2
+	my makeTab()
+	do script "cd Documents/Flujo/Demoroom-GoogleSTT" in tab 2 of front window
+	do script "npm start" in tab 2 of front window
+	delay 2
+	my makeTab()
+	do script "cd ../../../Downloads/emqttd/" in tab 3 of front window
+	do script "./bin/emqttd start" in tab 3 of front window
+	delay 2
+	my makeTab()
+	do script "node-red" in tab 4 of front window
+	delay 2
+end tell
+
+on makeTab()
+	tell application "System Events" to keystroke "t" using {command down}
+	delay 0.2
+end makeTab
