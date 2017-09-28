@@ -17,8 +17,10 @@ on run {input, parameters}
 		end tell
 		delay 1
 	end repeat
-
+	delay 1
+	keystroke "f" using {command down, shift down}
 	# We must return something so we just return the input
+
 	return input
 
 end run
